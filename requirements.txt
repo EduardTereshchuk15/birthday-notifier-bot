@@ -1,0 +1,5 @@
+gspread==5.12.0
+requests==2.31.0
+google-auth==2.28.1
+functions_framework
+python-dotenv
