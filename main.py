@@ -1,5 +1,3 @@
-import json
-
 import functions_framework
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
@@ -48,10 +46,3 @@ def publish_birthdays(request):
         send_message(msg)
         return {"message": msg}, 200
     return None
-
-
-if __name__ == "__main__":
-    request_body = json.dumps({"mode": "today"})
-    request = {"body": request_body}
-
-    publish_birthdays(request)
