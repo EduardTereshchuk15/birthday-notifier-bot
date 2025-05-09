@@ -29,6 +29,10 @@ def publish_birthdays(request):
             b for b in bdays
             if b["date"].month == today.month and today.day <= b["date"].day <= end.day
         ]
+
+        if not upcoming:
+            return {"message": "No birthdays this week"}, 200
+
         if upcoming:
             msg = "🎂 Цього тижня святкують:\n" + "\n".join(
                 f"• {b['name']} — {b['date'].strftime('%d.%m')}" for b in upcoming
@@ -40,6 +44,10 @@ def publish_birthdays(request):
         today_birthdays = [
             b for b in bdays if b["date"].day == today.day and b["date"].month == today.month
         ]
+
+        if not today_birthdays:
+            return {"message": "No birthdays today"}, 200
+
         names = [b["name"] for b in today_birthdays]
         names_str = ", ".join(names)
         msg = f"🎉 Сьогодні день народження у {names_str}! Привітаймо! 🥳"
