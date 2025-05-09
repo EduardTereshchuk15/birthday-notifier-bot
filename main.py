@@ -9,7 +9,7 @@ load_dotenv()
 def publish_birthdays(request):
 
     request_json = request.get_json(silent=True)
-    request_args = request.args  # Parse query parameters
+    request_args = request.args
 
     mode = None
     if request_json and "mode" in request_json:
