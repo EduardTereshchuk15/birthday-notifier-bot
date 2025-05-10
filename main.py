@@ -1,9 +1,6 @@
 import functions_framework
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
-from gsheet import get_birthdays, send_message
-
-load_dotenv()
+from gsheet import get_birthdays, send_message, MAIN_GROUP_CHAT_ID
 
 @functions_framework.http
 def publish_birthdays(request):
@@ -37,7 +34,7 @@ def publish_birthdays(request):
             msg = "🎂 Цього тижня святкують:\n" + "\n".join(
                 f"• {b['name']} — {b['date'].strftime('%d.%m')}" for b in upcoming
             )
-        send_message(msg)
+        send_message(MAIN_GROUP_CHAT_ID, msg)
         return {"message": msg}, 200
 
     elif mode == "today":
@@ -51,6 +48,6 @@ def publish_birthdays(request):
         names = [b["name"] for b in today_birthdays]
         names_str = ", ".join(names)
         msg = f"🎉 Сьогодні день народження у {names_str}! Привітаймо! 🥳"
-        send_message(msg)
+        send_message(MAIN_GROUP_CHAT_ID, msg)
         return {"message": msg}, 200
     return None
