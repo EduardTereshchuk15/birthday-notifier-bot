@@ -176,3 +176,6 @@ cython_debug/
 .idea/
 birthday_bot.iml
 .gcloudignore
+lambda_package/
+
+credentials.json
